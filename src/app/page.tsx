@@ -60,12 +60,20 @@ export default function HomePage() {
           </span>
           <span className="text-lg font-bold tracking-tight">OD Media Saver</span>
         </a>
-        <a
-          href="#how-it-works"
-          className="rounded-full px-4 py-2 text-sm font-semibold text-[#716d7e] transition hover:bg-[#f5f2fc] hover:text-[#7048e8]"
-        >
-          How it works
-        </a>
+        <nav className="flex items-center gap-2">
+          <a
+            href="#how-it-works"
+            className="hidden rounded-full px-4 py-2 text-sm font-semibold text-[#716d7e] transition hover:bg-[#f5f2fc] hover:text-[#7048e8] sm:inline-flex"
+          >
+            How it works
+          </a>
+          <a
+            href="/login"
+            className="rounded-full border border-[#eceaf1] px-4 py-2 text-sm font-semibold text-[#6240ce] transition hover:bg-[#f5f2fc]"
+          >
+            Sign in
+          </a>
+        </nav>
       </header>
 
       <section className="relative mx-auto flex max-w-5xl flex-col items-center px-5 pb-20 pt-14 text-center sm:px-8 sm:pt-24">
