@@ -1,9 +1,9 @@
-import { ArrowDownToLine, CheckCircle2, Facebook, Instagram, Link2, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowDownToLine, Camera, CheckCircle2, Link2, Music2, ShieldCheck, Sparkles } from "lucide-react";
 
 const platforms = [
-  { name: "Facebook", Icon: Facebook },
-  { name: "Instagram", Icon: Instagram },
-  { name: "TikTok", Icon: Sparkles },
+  { name: "Facebook", Icon: Camera },
+  { name: "Instagram", Icon: Camera },
+  { name: "TikTok", Icon: Music2 },
 ];
 
 export default function HomePage() {
