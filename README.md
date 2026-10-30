@@ -19,7 +19,7 @@ This repository is the V1 foundation. It does not yet implement working Facebook
 - Next.js App Router and TypeScript
 - Tailwind CSS
 - Supabase Auth and PostgreSQL
-- Google OAuth and email/password authentication
+- Google OAuth and email/password authentication (Supabase Auth)
 - Vercel
 - Google Analytics 4 (consent-aware)
 - Google AdSense (subject to approval and policy compliance)
@@ -51,14 +51,16 @@ The initial scaffold will contain no fake downloader implementation. Provider in
 
 ## Environment variables
 
-See `.env.example`. Never commit real credentials, OAuth secrets, service-role keys, or access tokens.
+See `.env.example` and `docs/AUTH_SETUP.md`. Never commit real credentials, OAuth secrets, service-role keys, or access tokens.
+
+Authentication pages and Supabase SSR clients are scaffolded. Add your Supabase project keys and configure the Google provider in the Supabase Dashboard before testing sign-in. Guest use remains available without configuration.
 
 ## Milestones
 
 1. Foundation, design system, responsive homepage.
 2. URL detection, validation, security controls, provider contracts.
 3. Official platform integrations and authorization verification.
-4. Optional authentication and download history.
+4. Optional authentication (Google and email/password) and download history.
 5. Analytics and compliant advertising.
 6. Security, accessibility, integration testing, production deployment.
 
