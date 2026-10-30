@@ -86,9 +86,11 @@ export function MediaLinkForm() {
           <Link2 size={19} className="shrink-0 text-[#8a8498]" aria-hidden="true" />
           <input
             id="media-url"
-            type="url"
+            type="text"
             inputMode="url"
             autoComplete="url"
+            autoCapitalize="off"
+            spellCheck={false}
             placeholder="Paste a Facebook, Instagram or TikTok link"
             value={url}
             onChange={(event) => {
