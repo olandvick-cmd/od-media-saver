@@ -38,6 +38,15 @@ Metadata access, video embedding, and downloadable-file access are separate capa
 - Keep OAuth credentials and access tokens on the server.
 - Apply rate limits to guest and authenticated requests.
 
+## Authentication
+
+- Supabase Auth handles email/password and Google OAuth.
+- Browser and server clients are created separately with `@supabase/ssr`.
+- The Next.js 16 root `proxy.ts` refreshes sessions and verifies JWT claims with `auth.getClaims()`.
+- Protected pages verify claims server-side; never authorize from an unverified cookie or `getSession()` alone.
+- The public publishable/anon key may be exposed to the browser. Service-role keys and OAuth secrets must remain server-side.
+- Guests can use public functionality without creating an account.
+
 ## Media retention
 
 Do not persist media by default. Temporary processing records should have an explicit expiry. Download history should store only the minimum metadata needed by the user and must follow the application's retention policy.
