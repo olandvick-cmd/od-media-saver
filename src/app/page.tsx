@@ -1,91 +1,160 @@
-import { ArrowDownToLine, Camera, CheckCircle2, Link2, Music2, ShieldCheck, Sparkles } from "lucide-react";
+import {
+  ArrowDownToLine,
+  CheckCircle2,
+  CircleHelp,
+  ShieldCheck,
+  Sparkles,
+  Zap,
+} from "lucide-react";
+import { MediaLinkForm } from "@/components/media-link-form";
 
-const platforms = [
-  { name: "Facebook", Icon: Camera },
-  { name: "Instagram", Icon: Camera },
-  { name: "TikTok", Icon: Music2 },
+const platforms = ["Facebook", "Instagram", "TikTok"];
+
+const features = [
+  {
+    Icon: ShieldCheck,
+    title: "Permission comes first",
+    description:
+      "No bypassing private content, DRM, creator settings, or platform restrictions.",
+  },
+  {
+    Icon: CheckCircle2,
+    title: "Honest status updates",
+    description:
+      "Know when a link is recognized, unsupported, or not yet available for processing.",
+  },
+  {
+    Icon: Zap,
+    title: "Simple by design",
+    description:
+      "A clean experience built to work smoothly on phones, tablets, and desktops.",
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "Paste a link",
+    description: "Copy a supported public post link and add it to the link field.",
+  },
+  {
+    number: "02",
+    title: "Check the source",
+    description: "We identify the platform and validate the link format.",
+  },
+  {
+    number: "03",
+    title: "See what's available",
+    description:
+      "When an authorized provider is ready, we'll show the options the source permits.",
+  },
 ];
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-6 sm:px-8">
+    <main className="min-h-screen overflow-hidden">
+      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
         <a href="/" className="flex items-center gap-2.5" aria-label="OD Media Saver home">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#7048e8] text-white">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#7048e8] text-white shadow-sm">
             <ArrowDownToLine size={21} strokeWidth={2.5} />
           </span>
           <span className="text-lg font-bold tracking-tight">OD Media Saver</span>
         </a>
-        <a href="#how-it-works" className="text-sm font-medium text-[#716d7e] transition hover:text-[#7048e8]">
+        <a
+          href="#how-it-works"
+          className="rounded-full px-4 py-2 text-sm font-semibold text-[#716d7e] transition hover:bg-[#f5f2fc] hover:text-[#7048e8]"
+        >
           How it works
         </a>
       </header>
 
-      <section className="mx-auto flex max-w-4xl flex-col items-center px-5 pb-20 pt-16 text-center sm:px-8 sm:pt-24">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#e9e3ff] bg-[#f7f4ff] px-3.5 py-2 text-xs font-semibold text-[#6240ce]">
+      <section className="relative mx-auto flex max-w-5xl flex-col items-center px-5 pb-20 pt-14 text-center sm:px-8 sm:pt-24">
+        <div className="pointer-events-none absolute left-1/2 top-10 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-[#f0eaff] blur-3xl sm:h-96 sm:w-96" />
+
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#e9e3ff] bg-white/80 px-3.5 py-2 text-xs font-semibold text-[#6240ce] shadow-sm">
           <Sparkles size={14} />
           Simple. Clear. Permission-first.
         </div>
-        <h1 className="max-w-3xl text-4xl font-bold leading-[1.1] tracking-[-0.045em] sm:text-6xl">
-          Save the media you&apos;re <span className="text-[#7048e8]">authorized</span> to keep.
+
+        <h1 className="max-w-3xl text-4xl font-bold leading-[1.08] tracking-[-0.05em] sm:text-6xl">
+          Your media links,
+          <br className="hidden sm:block" /> made <span className="text-[#7048e8]">simpler.</span>
         </h1>
         <p className="mt-6 max-w-xl text-base leading-7 text-[#716d7e] sm:text-lg">
-          A straightforward place to process supported social-media links. Downloads will only be offered when the source and platform permissions allow them.
+          Check supported social-media links in one clean place. Downloads will
+          only be offered when the platform and content permissions allow them.
         </p>
 
-        <div className="mt-10 w-full max-w-2xl rounded-2xl border border-[#eceaf1] bg-white p-3 shadow-[0_18px_60px_rgba(37,25,75,0.07)]">
-          <div className="flex min-h-14 items-center gap-3 rounded-xl bg-[#f8f7fb] px-4 text-left">
-            <Link2 size={19} className="shrink-0 text-[#8a8498]" />
-            <span className="text-sm text-[#8a8498]">Platform processing is not enabled yet</span>
-          </div>
-          <button
-            type="button"
-            disabled
-            className="mt-3 flex min-h-12 w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-[#7048e8] px-5 text-sm font-semibold text-white opacity-60"
-            aria-disabled="true"
-            title="Downloader integrations are not implemented yet"
-          >
-            Downloader coming during integration phase
-          </button>
-          <p className="px-2 pb-1 pt-3 text-xs leading-5 text-[#8a8498]">
-            We won&apos;t claim a download is available until an authorized integration has been implemented and tested.
-          </p>
+        <div className="mt-10 w-full">
+          <MediaLinkForm />
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          {platforms.map(({ name, Icon }) => (
-            <span key={name} className="inline-flex items-center gap-2 rounded-full border border-[#eceaf1] px-4 py-2 text-sm font-medium text-[#716d7e]">
-              <Icon size={16} />
-              {name}
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
+          <span className="mr-1 text-xs font-medium text-[#9691a0]">Link support planned for</span>
+          {platforms.map((platform) => (
+            <span
+              key={platform}
+              className="rounded-full border border-[#eceaf1] bg-white px-3.5 py-1.5 text-xs font-semibold text-[#716d7e]"
+            >
+              {platform}
             </span>
           ))}
         </div>
 
         <div className="mt-16 grid w-full gap-4 text-left sm:grid-cols-3">
-          <article className="rounded-2xl border border-[#eceaf1] p-5">
-            <ShieldCheck className="text-[#7048e8]" size={22} />
-            <h2 className="mt-4 font-semibold">Permission-first</h2>
-            <p className="mt-2 text-sm leading-6 text-[#716d7e]">No bypassing private content, DRM, or platform restrictions.</p>
-          </article>
-          <article className="rounded-2xl border border-[#eceaf1] p-5">
-            <CheckCircle2 className="text-[#7048e8]" size={22} />
-            <h2 className="mt-4 font-semibold">Honest results</h2>
-            <p className="mt-2 text-sm leading-6 text-[#716d7e]">Clear status messages instead of simulated download success.</p>
-          </article>
-          <article className="rounded-2xl border border-[#eceaf1] p-5">
-            <ArrowDownToLine className="text-[#7048e8]" size={22} />
-            <h2 className="mt-4 font-semibold">Simple by design</h2>
-            <p className="mt-2 text-sm leading-6 text-[#716d7e]">A clean, mobile-friendly experience with optional accounts.</p>
-          </article>
+          {features.map(({ Icon, title, description }) => (
+            <article
+              key={title}
+              className="rounded-2xl border border-[#eceaf1] bg-white p-5 transition hover:-translate-y-0.5 hover:shadow-[0_12px_35px_rgba(37,25,75,0.06)]"
+            >
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#f3efff] text-[#7048e8]">
+                <Icon size={21} />
+              </span>
+              <h2 className="mt-4 font-semibold">{title}</h2>
+              <p className="mt-2 text-sm leading-6 text-[#716d7e]">{description}</p>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section id="how-it-works" className="border-t border-[#eceaf1] bg-[#faf9fc]">
-        <div className="mx-auto max-w-6xl px-5 py-10 text-center sm:px-8">
-          <p className="text-sm text-[#8a8498]">OD Media Saver · V1 foundation</p>
-          <p className="mt-2 text-xs text-[#aaa5b4]">Platform integrations are under development. Availability depends on official APIs, permissions, and source authorization.</p>
+      <section id="how-it-works" className="border-y border-[#eceaf1] bg-[#faf9fc]">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+          <div className="mx-auto max-w-xl text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#7048e8]">
+              Three simple steps
+            </p>
+            <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+              How OD Media Saver works
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-[#716d7e]">
+              The experience is designed to stay clear about what is and isn't
+              available.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {steps.map((step) => (
+              <article key={step.number} className="rounded-2xl bg-white p-6">
+                <p className="text-sm font-bold tracking-wide text-[#7048e8]">
+                  {step.number}
+                </p>
+                <h3 className="mt-4 font-semibold">{step.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-[#716d7e]">
+                  {step.description}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
+
+      <footer className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-8 text-center sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:text-left">
+        <p className="text-sm font-semibold text-[#716d7e]">OD Media Saver</p>
+        <p className="flex items-center justify-center gap-1.5 text-xs text-[#9691a0]">
+          <CircleHelp size={14} />
+          Provider integrations are still in development.
+        </p>
+      </footer>
     </main>
   );
 }
