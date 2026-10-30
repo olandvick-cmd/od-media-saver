@@ -1,13 +1,14 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import {
   AlertCircle,
   ArrowRight,
   CheckCircle2,
   ClipboardPaste,
   Link2,
-  LoaderCircle,
+  Clock3,
   X,
 } from "lucide-react";
 import { detectPlatformUrl } from "@/lib/validation/platform-url";
@@ -153,7 +154,7 @@ export function MediaLinkForm() {
             </div>
           </div>
           <div className="mt-3 flex items-center gap-2 rounded-lg bg-white px-3 py-2 text-xs text-[#8a8498]">
-            <LoaderCircle size={14} />
+            <Clock3 size={14} />
             <span>Provider integration pending</span>
           </div>
         </div>
