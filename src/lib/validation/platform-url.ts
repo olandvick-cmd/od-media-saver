@@ -27,7 +27,7 @@ export function detectPlatformUrl(input: string): PlatformDetection {
     return { supported: false, reason: "invalid_url" };
   }
 
-  const hostname = url.hostname.toLowerCase().replace(/\\.$/, "");
+  const hostname = url.hostname.toLowerCase().replace(/\.$/, "");
 
   for (const [platform, hosts] of Object.entries(HOSTS) as [SupportedPlatform, readonly string[]][]) {
     if (hosts.includes(hostname)) {
