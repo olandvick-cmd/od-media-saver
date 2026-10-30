@@ -23,6 +23,13 @@ describe("detectPlatformUrl", () => {
     });
   });
 
+  it("normalizes a trailing dot in a supported hostname", () => {
+    expect(detectPlatformUrl("https://instagram.com./reel/example")).toMatchObject({
+      supported: true,
+      platform: "instagram",
+    });
+  });
+
   it("rejects unrelated hosts", () => {
     expect(detectPlatformUrl("https://example.com/video")).toMatchObject({
       supported: false,
