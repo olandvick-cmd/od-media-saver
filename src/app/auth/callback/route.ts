@@ -1,18 +1,24 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
-function safeNextPath(value: string | null): string {
+function safeNextPath(value: string | null, origin: string): string {
   if (!value || !value.startsWith("/") || value.startsWith("//")) {
     return "/account";
   }
 
-  return value;
+  try {
+    const destination = new URL(value, origin);
+    if (destination.origin !== origin) return "/account";
+    return `${destination.pathname}${destination.search}${destination.hash}`;
+  } catch {
+    return "/account";
+  }
 }
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
-  const next = safeNextPath(requestUrl.searchParams.get("next"));
+  const next = safeNextPath(requestUrl.searchParams.get("next"), requestUrl.origin);
 
   if (code) {
     const supabase = await createClient();
